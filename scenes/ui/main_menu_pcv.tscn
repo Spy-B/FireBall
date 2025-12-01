@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbo8wxuqxsx60"]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/menu_button.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://b130qdsvfcnbg" path="res://assets/sprites/Fire Ball(Name Of Game).png" id="2"]
+[ext_resource type="Script" uid="uid://yi0vvcsh3g5j" path="res://scripts/ui/main_menu_pcv.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://cfwhli8e1akn1" path="res://assets/sprites/spr_stars01.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cr5cqsgqitv4q" path="res://assets/sprites/spr_stars02.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cnr4tybebopbm" path="res://assets/sprites/Enemy(BG).png" id="7"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -10.0
+offset_bottom = 2.0
+color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+position = Vector2(678, 418)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4")
+
+[node name="Sprite2" type="Sprite2D" parent="ColorRect"]
+position = Vector2(700, 70)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5")
+
+[node name="Enemy(BG)" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(664, -128)
+amount = 5
+texture = ExtResource("7")
+lifetime = 8.0
+speed_scale = 0.4
+emission_shape = 2
+emission_sphere_radius = 1.0
+gravity = Vector2(0, 80)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 384)
+layout_mode = 2
+
+[node name="NameOfGame" type="Sprite2D" parent="VBoxContainer/CenterContainer"]
+self_modulate = Color(0.92549, 0.611765, 0.611765, 1)
+position = Vector2(672, 204)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Start" parent="VBoxContainer/VBoxContainer" instance=ExtResource("1")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../About")
+arrow_margin_from_center = 100
+text = "Start"
+
+[node name="About" parent="VBoxContainer/VBoxContainer" instance=ExtResource("1")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Start")
+focus_neighbor_bottom = NodePath("../Control")
+arrow_margin_from_center = 114
+text = "About"
+
+[node name="Control" parent="VBoxContainer/VBoxContainer" instance=ExtResource("1")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../About")
+focus_neighbor_bottom = NodePath("../Exit")
+arrow_margin_from_center = 129
+text = "Control"
+
+[node name="Exit" parent="VBoxContainer/VBoxContainer" instance=ExtResource("1")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Control")
+focus_neighbor_bottom = NodePath("../Start")
+arrow_margin_from_center = 85
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/About" to="." method="_on_About_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Control" to="." method="_on_Control_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

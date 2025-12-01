@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/FREE SOUND Deep Space Silence _space _ Space Sound Effect(MP3_160K).mp3-40c09c007290ef41ce0460111a488069.mp3str"
+
+[deps]
+
+source_file="res://SFX/music/FREE SOUND Deep Space Silence _space _ Space Sound Effect(MP3_160K).mp3"
+dest_files=[ "res://.import/FREE SOUND Deep Space Silence _space _ Space Sound Effect(MP3_160K).mp3-40c09c007290ef41ce0460111a488069.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

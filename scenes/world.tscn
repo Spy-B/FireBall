@@ -1,0 +1,754 @@
+[gd_scene load_steps=38 format=3 uid="uid://cs6hygpdcub7d"]
+
+[ext_resource type="PackedScene" uid="uid://bdhy85oaiwdc6" path="res://scenes/player/player.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dyq3igva3gvke" path="res://scripts/items/coins.gd" id="2"]
+[ext_resource type="Script" uid="uid://dtsondet6y47c" path="res://scripts/enemy_spawner.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://cxar5cx1ru1am" path="res://scenes/player_explotion.tscn" id="4_37qwj"]
+[ext_resource type="PackedScene" uid="uid://ccfd1i5t8cn1" path="res://scenes/enemies/enemy.tscn" id="7_1vso6"]
+[ext_resource type="PackedScene" uid="uid://bnwjyx2x0ae7l" path="res://scenes/enemies/enemy_2.tscn" id="9_pt3ps"]
+[ext_resource type="PackedScene" uid="uid://br3qtlvifmtnu" path="res://scenes/items/time_elixir.tscn" id="10_0nbtd"]
+[ext_resource type="Script" uid="uid://cwy4f5w58psy8" path="res://scripts/enemy_2_spawner.gd" id="11"]
+[ext_resource type="PackedScene" uid="uid://put4icucsawp" path="res://scenes/items/coin.tscn" id="13_hmc15"]
+[ext_resource type="PackedScene" uid="uid://bc7s0xotj4ekj" path="res://scenes/items/defense_elixir.tscn" id="14_hmc15"]
+[ext_resource type="Script" uid="uid://cfam3mdr14mh" path="res://scripts/ui/ui.gd" id="16_navra"]
+[ext_resource type="Script" uid="uid://cn1io3bl4rmue" path="res://scripts/ui/score.gd" id="18"]
+[ext_resource type="Script" uid="uid://dbrgsinvim6kq" path="res://scripts/coin_spawner.gd" id="19"]
+[ext_resource type="Script" uid="uid://ch1xgxx1mavfk" path="res://scripts/CountDown.gd" id="20"]
+[ext_resource type="FontFile" uid="uid://c868sq18mtp51" path="res://assets/fonts/neuropol.otf" id="21"]
+[ext_resource type="Script" uid="uid://cv7utgt6tdkql" path="res://scripts/defense_elixer_spawner.gd" id="22"]
+[ext_resource type="PackedScene" uid="uid://uv3wlvtigkim" path="res://scenes/ui/pause.tscn" id="23"]
+[ext_resource type="Script" uid="uid://yr1po44pipb1" path="res://scripts/time_elixir_spawner.gd" id="26"]
+[ext_resource type="LabelSettings" uid="uid://cm30ovqg8ekmj" path="res://resources/labels/world_labels.res" id="26_817gm"]
+[ext_resource type="Texture2D" uid="uid://cfqgpcm08krym" path="res://assets/sprites/Pause Icon(click).png" id="33_x2olw"]
+[ext_resource type="Texture2D" uid="uid://ml18xyhyotao" path="res://assets/sprites/Pause Icon.png" id="34_817gm"]
+[ext_resource type="PackedScene" uid="uid://cwu8j2qkxsi8g" path="res://scenes/ui/game_over.tscn" id="39"]
+[ext_resource type="Script" uid="uid://bsw5vbjxffy3w" path="res://scripts/bg_music.gd" id="45"]
+[ext_resource type="Texture2D" uid="uid://d4ep36nuf0wr8" path="res://assets/sprites/+10.png" id="46"]
+[ext_resource type="Texture2D" uid="uid://cr5cqsgqitv4q" path="res://assets/sprites/spr_stars02.png" id="47"]
+[ext_resource type="Texture2D" uid="uid://cfwhli8e1akn1" path="res://assets/sprites/spr_stars01.png" id="48"]
+[ext_resource type="PackedScene" uid="uid://dq0cirr68u4h1" path="res://scenes/ui/joystick.tscn" id="56"]
+[ext_resource type="Script" uid="uid://csqfxxoo3y0uw" path="res://scripts/player/player_camera.gd" id="57"]
+
+[sub_resource type="Shader" id="19"]
+code = "shader_type canvas_item;
+
+uniform vec2 direction = vec2(0.0, -01.0);
+uniform float speed_scale = 0.002;
+
+void fragment() {
+	vec2 move = direction * TIME * speed_scale;
+	COLOR = texture(TEXTURE, UV + move);
+}"
+
+[sub_resource type="ShaderMaterial" id="20"]
+shader = SubResource("19")
+shader_parameter/direction = Vector2(0, -1)
+shader_parameter/speed_scale = 0.006
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(534.8468, 20)
+
+[sub_resource type="FontFile" id="21"]
+fallbacks = Array[Font]([ExtResource("21")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="Animation" id="14"]
+resource_name = "AddTime"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("+:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(45, -0.15, 0, 0.1, 2.5, -10, -0.06666668, -12.5, 0, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("+:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("+:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("+:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("+:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("+:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ggc52"]
+_data = {
+&"AddTime": SubResource("14"),
+&"RESET": SubResource("15")
+}
+
+[sub_resource type="RectangleShape2D" id="13"]
+size = Vector2(400, 500)
+
+[sub_resource type="Environment" id="32"]
+background_mode = 4
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/4 = 1.0
+glow_levels/6 = 1.0
+glow_levels/7 = 1.0
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 2.0
+
+[node name="world" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[node name="Background2" type="TextureRect" parent="."]
+offset_left = -40.0
+offset_top = -32.0
+offset_right = 2520.0
+offset_bottom = 2528.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("48")
+stretch_mode = 2
+
+[node name="Background" type="TextureRect" parent="."]
+material = SubResource("20")
+offset_left = -39.0
+offset_top = -32.0
+offset_right = 2521.0
+offset_bottom = 2528.0
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("47")
+stretch_mode = 2
+
+[node name="Player" parent="." node_paths=PackedStringArray("joystick") instance=ExtResource("1")]
+position = Vector2(384, 256)
+death_particle_scene = ExtResource("4_37qwj")
+joystick = NodePath("../UI/PhoneController/JoyStick_B")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(2.5, 2.5)
+position_smoothing_enabled = true
+script = ExtResource("57")
+
+[node name="Timer" type="Timer" parent="Camera2D"]
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="EnemySpawners" type="Node2D" parent="Spawners"]
+position = Vector2(-32, 24)
+
+[node name="EnemySpawner" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(96, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawner2" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(160, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner2"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawner3" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(224, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner3"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawner4" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(288, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner4"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawner5" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(352, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner5"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawner6" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(416, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner6"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawner7" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(480, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner7"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawner]8" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(544, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner]8"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawner]9" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(608, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner]9"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawner]10" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(672, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner]10"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawner]11" type="Marker2D" parent="Spawners/EnemySpawners"]
+position = Vector2(736, -88)
+script = ExtResource("3")
+enemyPath = ExtResource("7_1vso6")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner]11"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawners2" type="Node2D" parent="Spawners"]
+position = Vector2(-32, 24)
+
+[node name="Enemy2Spawner" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(128, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy2Spawner2" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(192, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner2"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy2Spawner3" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(256, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner3"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy2Spawner4" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(320, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner4"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy2Spawner5" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(384, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner5"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy2Spawner6" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(448, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner6"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy2Spawner7" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(512, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner7"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy2Spawner8" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(576, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner8"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy2Spawner9" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(640, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner9"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy2Spawner10" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(704, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner10"]
+wait_time = 0.5
+autostart = true
+
+[node name="Enemy2Spawner11" type="Marker2D" parent="Spawners/EnemySpawners2"]
+position = Vector2(768, -120)
+script = ExtResource("11")
+enemyPath = ExtResource("9_pt3ps")
+
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners2/Enemy2Spawner11"]
+wait_time = 0.5
+autostart = true
+
+[node name="TimeElixirSpawners" type="Node2D" parent="Spawners"]
+position = Vector2(-32, 24)
+
+[node name="TimeElixirSpawner" type="Marker2D" parent="Spawners/TimeElixirSpawners"]
+position = Vector2(96, -152)
+script = ExtResource("26")
+timeElixirPath = ExtResource("10_0nbtd")
+
+[node name="Timer" type="Timer" parent="Spawners/TimeElixirSpawners/TimeElixirSpawner"]
+
+[node name="TimeElixirSpawner2" type="Marker2D" parent="Spawners/TimeElixirSpawners"]
+position = Vector2(224, -152)
+script = ExtResource("26")
+timeElixirPath = ExtResource("10_0nbtd")
+
+[node name="Timer" type="Timer" parent="Spawners/TimeElixirSpawners/TimeElixirSpawner2"]
+
+[node name="TimeElixirSpawner3" type="Marker2D" parent="Spawners/TimeElixirSpawners"]
+position = Vector2(354, -150)
+script = ExtResource("26")
+timeElixirPath = ExtResource("10_0nbtd")
+
+[node name="Timer" type="Timer" parent="Spawners/TimeElixirSpawners/TimeElixirSpawner3"]
+
+[node name="TimeElixirSpawner4" type="Marker2D" parent="Spawners/TimeElixirSpawners"]
+position = Vector2(474, -150)
+script = ExtResource("26")
+timeElixirPath = ExtResource("10_0nbtd")
+
+[node name="Timer" type="Timer" parent="Spawners/TimeElixirSpawners/TimeElixirSpawner4"]
+
+[node name="TimeElixirSpawner5" type="Marker2D" parent="Spawners/TimeElixirSpawners"]
+position = Vector2(610, -150)
+script = ExtResource("26")
+timeElixirPath = ExtResource("10_0nbtd")
+
+[node name="Timer" type="Timer" parent="Spawners/TimeElixirSpawners/TimeElixirSpawner5"]
+
+[node name="TimeElixirSpawner6" type="Marker2D" parent="Spawners/TimeElixirSpawners"]
+position = Vector2(738, -150)
+script = ExtResource("26")
+timeElixirPath = ExtResource("10_0nbtd")
+
+[node name="Timer" type="Timer" parent="Spawners/TimeElixirSpawners/TimeElixirSpawner6"]
+
+[node name="CoinSpawners" type="Node2D" parent="Spawners"]
+position = Vector2(-32, 24)
+
+[node name="CoinSpawner" type="Marker2D" parent="Spawners/CoinSpawners"]
+position = Vector2(96, -216)
+script = ExtResource("19")
+coinPath = ExtResource("13_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/CoinSpawners/CoinSpawner"]
+
+[node name="CoinSpawner2" type="Marker2D" parent="Spawners/CoinSpawners"]
+position = Vector2(224, -216)
+script = ExtResource("19")
+coinPath = ExtResource("13_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/CoinSpawners/CoinSpawner2"]
+
+[node name="CoinSpawner3" type="Marker2D" parent="Spawners/CoinSpawners"]
+position = Vector2(354, -214)
+script = ExtResource("19")
+coinPath = ExtResource("13_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/CoinSpawners/CoinSpawner3"]
+
+[node name="CoinSpawner4" type="Marker2D" parent="Spawners/CoinSpawners"]
+position = Vector2(474, -214)
+script = ExtResource("19")
+coinPath = ExtResource("13_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/CoinSpawners/CoinSpawner4"]
+
+[node name="CoinSpawner5" type="Marker2D" parent="Spawners/CoinSpawners"]
+position = Vector2(610, -214)
+script = ExtResource("19")
+coinPath = ExtResource("13_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/CoinSpawners/CoinSpawner5"]
+
+[node name="CoinSpawner6" type="Marker2D" parent="Spawners/CoinSpawners"]
+position = Vector2(738, -214)
+script = ExtResource("19")
+coinPath = ExtResource("13_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/CoinSpawners/CoinSpawner6"]
+
+[node name="DefenseElixirSpawners" type="Node2D" parent="Spawners"]
+position = Vector2(0, 24)
+
+[node name="DefenseElixirSpawner" type="Marker2D" parent="Spawners/DefenseElixirSpawners"]
+position = Vector2(128, -184)
+script = ExtResource("22")
+defenseBallPath = ExtResource("14_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/DefenseElixirSpawners/DefenseElixirSpawner"]
+
+[node name="DefenseElixirSpawner2" type="Marker2D" parent="Spawners/DefenseElixirSpawners"]
+position = Vector2(256, -184)
+script = ExtResource("22")
+defenseBallPath = ExtResource("14_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/DefenseElixirSpawners/DefenseElixirSpawner2"]
+
+[node name="DefenseElixirSpawner3" type="Marker2D" parent="Spawners/DefenseElixirSpawners"]
+position = Vector2(386, -182)
+script = ExtResource("22")
+defenseBallPath = ExtResource("14_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/DefenseElixirSpawners/DefenseElixirSpawner3"]
+
+[node name="DefenseElixirSpawner4" type="Marker2D" parent="Spawners/DefenseElixirSpawners"]
+position = Vector2(506, -182)
+script = ExtResource("22")
+defenseBallPath = ExtResource("14_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/DefenseElixirSpawners/DefenseElixirSpawner4"]
+
+[node name="DefenseElixirSpawner5" type="Marker2D" parent="Spawners/DefenseElixirSpawners"]
+position = Vector2(642, -182)
+script = ExtResource("22")
+defenseBallPath = ExtResource("14_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/DefenseElixirSpawners/DefenseElixirSpawner5"]
+
+[node name="DefenseElixirSpawner6" type="Marker2D" parent="Spawners/DefenseElixirSpawners"]
+position = Vector2(770, -182)
+script = ExtResource("22")
+defenseBallPath = ExtResource("14_hmc15")
+
+[node name="Timer" type="Timer" parent="Spawners/DefenseElixirSpawners/DefenseElixirSpawner6"]
+
+[node name="WorldLimits" type="Node2D" parent="."]
+
+[node name="Limit" type="StaticBody2D" parent="WorldLimits"]
+position = Vector2(384, 448.00003)
+scale = Vector2(1.40601, 0.933583)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/Limit"]
+position = Vector2(-3.0517578e-05, 0)
+scale = Vector2(1, 0.9999998)
+shape = SubResource("4")
+
+[node name="Limit2" type="StaticBody2D" parent="WorldLimits"]
+position = Vector2(784, 200)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldLimits/Limit2"]
+rotation = 1.5708
+shape = SubResource("4")
+
+[node name="Limit3" type="StaticBody2D" parent="WorldLimits"]
+position = Vector2(384, -23.999998)
+scale = Vector2(1.40576, 0.945249)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/Limit3"]
+shape = SubResource("4")
+
+[node name="Limit4" type="StaticBody2D" parent="WorldLimits"]
+position = Vector2(-16, 208)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/Limit4"]
+rotation = 1.5708
+shape = SubResource("4")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("16_navra")
+
+[node name="FPS" type="Label" parent="UI"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.588235)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -88.0
+offset_right = 184.0
+offset_bottom = -56.0
+grow_vertical = 0
+text = "fps"
+label_settings = ExtResource("26_817gm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="coins" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 32.0
+offset_right = 128.0
+offset_bottom = 96.0
+grow_horizontal = 2
+text = "coins : 999"
+label_settings = ExtResource("26_817gm")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2")
+
+[node name="Score" type="Label" parent="UI"]
+offset_left = 288.0
+offset_top = 32.0
+offset_right = 688.0
+offset_bottom = 96.0
+text = "999"
+label_settings = ExtResource("26_817gm")
+vertical_alignment = 1
+script = ExtResource("18")
+
+[node name="Timer" type="Timer" parent="UI/Score"]
+
+[node name="Score_Text" type="Label" parent="UI/Score"]
+layout_mode = 0
+offset_left = -160.0
+offset_right = -13.0
+offset_bottom = 64.0
+theme_override_fonts/font = SubResource("21")
+text = "Score :"
+label_settings = ExtResource("26_817gm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Countdown" type="Label" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.86700004
+anchor_right = 0.86700004
+offset_left = -272.64014
+offset_top = 32.0
+offset_right = -132.64014
+offset_bottom = 96.0
+text = "999"
+label_settings = ExtResource("26_817gm")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("20")
+
+[node name="Timer" type="Timer" parent="UI/Countdown"]
+
+[node name="+" type="Sprite2D" parent="UI/Countdown"]
+visible = false
+position = Vector2(184, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("46")
+
+[node name="AddTimeAnime" type="AnimationPlayer" parent="UI/Countdown"]
+libraries = {
+&"": SubResource("AnimationLibrary_ggc52")
+}
+
+[node name="CountDown_Text" type="Label" parent="UI/Countdown"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -32.0
+offset_right = 8.0
+offset_bottom = 32.0
+grow_vertical = 2
+text = "Time :"
+label_settings = ExtResource("26_817gm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause" parent="UI" node_paths=PackedStringArray("joystick", "pause_button") instance=ExtResource("23")]
+visible = false
+joystick = NodePath("../PhoneController/JoyStick_B")
+pause_button = NodePath("../PhoneController/PauseButton")
+
+[node name="PhoneController" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JoyStick_B" parent="UI/PhoneController" instance=ExtResource("56")]
+position = Vector2(280, 872)
+
+[node name="PauseButton" type="TouchScreenButton" parent="UI/PhoneController"]
+position = Vector2(1752, 24)
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("33_x2olw")
+texture_pressed = ExtResource("34_817gm")
+shape = SubResource("13")
+action = "ui_cancel"
+
+[node name="GameOver" parent="UI" instance=ExtResource("39")]
+visible = false
+
+[node name="BackgroundMusic" type="Node" parent="."]
+script = ExtResource("45")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="BackgroundMusic"]
+bus = &"Music"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("32")
+
+[connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner/Timer" to="Spawners/EnemySpawners/EnemySpawner" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner2/Timer" to="Spawners/EnemySpawners/EnemySpawner2" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner3/Timer" to="Spawners/EnemySpawners/EnemySpawner3" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner4/Timer" to="Spawners/EnemySpawners/EnemySpawner4" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner5/Timer" to="Spawners/EnemySpawners/EnemySpawner5" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner6/Timer" to="Spawners/EnemySpawners/EnemySpawner6" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner7/Timer" to="Spawners/EnemySpawners/EnemySpawner7" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner]8/Timer" to="Spawners/EnemySpawners/EnemySpawner]8" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner]9/Timer" to="Spawners/EnemySpawners/EnemySpawner]9" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner]10/Timer" to="Spawners/EnemySpawners/EnemySpawner]10" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner]11/Timer" to="Spawners/EnemySpawners/EnemySpawner]11" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner2/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner2" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner3/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner3" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner4/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner4" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner5/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner5" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner6/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner6" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner7/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner7" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner8/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner8" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner9/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner9" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner10/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner10" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner11/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner11" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/TimeElixirSpawners/TimeElixirSpawner/Timer" to="Spawners/TimeElixirSpawners/TimeElixirSpawner" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/TimeElixirSpawners/TimeElixirSpawner2/Timer" to="Spawners/TimeElixirSpawners/TimeElixirSpawner2" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/TimeElixirSpawners/TimeElixirSpawner3/Timer" to="Spawners/TimeElixirSpawners/TimeElixirSpawner3" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/TimeElixirSpawners/TimeElixirSpawner4/Timer" to="Spawners/TimeElixirSpawners/TimeElixirSpawner4" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/TimeElixirSpawners/TimeElixirSpawner5/Timer" to="Spawners/TimeElixirSpawners/TimeElixirSpawner5" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/TimeElixirSpawners/TimeElixirSpawner6/Timer" to="Spawners/TimeElixirSpawners/TimeElixirSpawner6" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/CoinSpawners/CoinSpawner/Timer" to="Spawners/CoinSpawners/CoinSpawner" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/CoinSpawners/CoinSpawner2/Timer" to="Spawners/CoinSpawners/CoinSpawner2" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/CoinSpawners/CoinSpawner3/Timer" to="Spawners/CoinSpawners/CoinSpawner3" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/CoinSpawners/CoinSpawner4/Timer" to="Spawners/CoinSpawners/CoinSpawner4" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/CoinSpawners/CoinSpawner5/Timer" to="Spawners/CoinSpawners/CoinSpawner5" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/CoinSpawners/CoinSpawner6/Timer" to="Spawners/CoinSpawners/CoinSpawner6" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/DefenseElixirSpawners/DefenseElixirSpawner/Timer" to="Spawners/DefenseElixirSpawners/DefenseElixirSpawner" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/DefenseElixirSpawners/DefenseElixirSpawner2/Timer" to="Spawners/DefenseElixirSpawners/DefenseElixirSpawner2" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/DefenseElixirSpawners/DefenseElixirSpawner3/Timer" to="Spawners/DefenseElixirSpawners/DefenseElixirSpawner3" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/DefenseElixirSpawners/DefenseElixirSpawner4/Timer" to="Spawners/DefenseElixirSpawners/DefenseElixirSpawner4" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/DefenseElixirSpawners/DefenseElixirSpawner5/Timer" to="Spawners/DefenseElixirSpawners/DefenseElixirSpawner5" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/DefenseElixirSpawners/DefenseElixirSpawner6/Timer" to="Spawners/DefenseElixirSpawners/DefenseElixirSpawner6" method="_on_Timer_timeout"]
+[connection signal="timeout" from="UI/Score/Timer" to="UI/Score" method="_on_Timer_timeout"]
+[connection signal="timeout" from="UI/Countdown/Timer" to="UI/Countdown" method="_on_Timer_timeout"]
+[connection signal="finished" from="BackgroundMusic/BackgroundMusic" to="BackgroundMusic" method="_on_Background_Music_finished"]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://bc7s0xotj4ekj"]
+
+[ext_resource type="Script" uid="uid://sgv3cjciqmm2" path="res://scripts/items/defense_elixir.gd" id="1_hkfio"]
+[ext_resource type="PackedScene" uid="uid://bd5v0egs7yugk" path="res://scenes/defense_elixer_explotion.tscn" id="2_0n5fk"]
+[ext_resource type="PackedScene" uid="uid://dgxjpix4s5oly" path="res://scenes/trail.tscn" id="3_of0jw"]
+[ext_resource type="Texture2D" uid="uid://bmxx1vqmmi15f" path="res://assets/sprites/circle_05.png" id="4_galaj"]
+[ext_resource type="Texture2D" uid="uid://dpi218qjmi1o4" path="res://assets/sprites/Attack.png" id="5_y7x3w"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 11.0
+
+[node name="DefenseElixir" type="CharacterBody2D" groups=["Attack"]]
+script = ExtResource("1_hkfio")
+DeathParticle = ExtResource("2_0n5fk")
+
+[node name="Trail" parent="." instance=ExtResource("3_of0jw")]
+default_color = Color(0.4, 0.00784314, 0.792157, 1)
+point_length = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+disabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("4_galaj")
+texture_scale = 0.15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("5_y7x3w")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("2")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

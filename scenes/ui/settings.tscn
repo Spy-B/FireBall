@@ -1,0 +1,273 @@
+[gd_scene load_steps=13 format=3 uid="uid://bddcrt6t4ds4c"]
+
+[ext_resource type="Script" uid="uid://dqovm6qsi0hya" path="res://scripts/ui/settings.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://c868sq18mtp51" path="res://assets/fonts/neuropol.otf" id="2"]
+[ext_resource type="Texture2D" uid="uid://eji2qjp5sxm7" path="res://assets/sprites/Back.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dgylkwsy4msk3" path="res://assets/sprites/Back(click).png" id="4"]
+[ext_resource type="LabelSettings" uid="uid://5ice883tomip" path="res://resources/labels/options_menu_labels.res" id="5_6f4k2"]
+[ext_resource type="Theme" uid="uid://cop4yeg0i3rtd" path="res://resources/themes/settings_sliders.res" id="6_4xk3x"]
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(1200, 240)
+
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="Theme" id="Theme_ob3hf"]
+
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="FontFile" id="9"]
+fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+
+[sub_resource type="FontFile" id="13"]
+fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="Back" type="TouchScreenButton" parent="."]
+position = Vector2(15.999999, 15.999999)
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("3")
+texture_pressed = ExtResource("4")
+shape = SubResource("2")
+action = "back"
+
+[node name="FullScreen" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -348.0
+offset_bottom = -288.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="FullScreen"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.635294, 1, 0, 1)
+theme_override_fonts/font = SubResource("3")
+text = "Full Screen"
+label_settings = ExtResource("5_6f4k2")
+vertical_alignment = 1
+uppercase = true
+
+[node name="CheckButton" type="CheckButton" parent="FullScreen"]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+theme = SubResource("Theme_ob3hf")
+alignment = 1
+icon_alignment = 1
+
+[node name="MasterVolume" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -284.0
+offset_bottom = -236.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="MasterVolume"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.635294, 1, 0, 1)
+theme_override_fonts/font = SubResource("5")
+text = "Master Volume"
+label_settings = ExtResource("5_6f4k2")
+vertical_alignment = 1
+uppercase = true
+
+[node name="HSlider" type="HSlider" parent="MasterVolume"]
+clip_contents = true
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+size_flags_vertical = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_4xk3x")
+min_value = -20.0
+max_value = 20.0
+
+[node name="MusicVolume" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -220.0
+offset_bottom = -172.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="MusicVolume"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.635294, 1, 0, 1)
+theme_override_fonts/font = SubResource("5")
+text = "Music Volume"
+label_settings = ExtResource("5_6f4k2")
+vertical_alignment = 1
+uppercase = true
+
+[node name="HSlider" type="HSlider" parent="MusicVolume"]
+clip_contents = true
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("6_4xk3x")
+min_value = -20.0
+max_value = 20.0
+
+[node name="SFXVolume" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -156.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="SFXVolume"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.635294, 1, 0, 1)
+theme_override_fonts/font = SubResource("9")
+text = "SFX Volume"
+label_settings = ExtResource("5_6f4k2")
+vertical_alignment = 1
+uppercase = true
+
+[node name="HSlider" type="HSlider" parent="SFXVolume"]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("6_4xk3x")
+min_value = -20.0
+max_value = 20.0
+
+[node name="PlayerTrail" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -28.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="PlayerTrail"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = SubResource("13")
+text = "Player Trail"
+label_settings = ExtResource("5_6f4k2")
+uppercase = true
+
+[node name="CheckButton" type="CheckButton" parent="PlayerTrail"]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+
+[node name="EnemyTrail" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 60.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="EnemyTrail"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = SubResource("13")
+text = "Enemy Trail"
+label_settings = ExtResource("5_6f4k2")
+uppercase = true
+
+[node name="CheckButton" type="CheckButton" parent="EnemyTrail"]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="FullScreen/CheckButton" to="." method="_on_OptionButton_pressed"]
+[connection signal="changed" from="MasterVolume/HSlider" to="." method="_on_HSlider_changed"]
+[connection signal="value_changed" from="MasterVolume/HSlider" to="." method="_on_HSlider3_value_changed"]
+[connection signal="value_changed" from="MusicVolume/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="SFXVolume/HSlider" to="." method="_on_HSlider2_value_changed"]
+[connection signal="pressed" from="PlayerTrail/CheckButton" to="." method="_on_CheckBox_pressed"]
+[connection signal="pressed" from="EnemyTrail/CheckButton" to="." method="_on_CheckBox2_pressed"]

@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://bdhy85oaiwdc6"]
+
+[ext_resource type="PackedScene" uid="uid://dgxjpix4s5oly" path="res://scenes/trail.tscn" id="1"]
+[ext_resource type="Script" uid="uid://d0yki41glhhbl" path="res://scripts/player/player.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://d0j6qrrglpt6p" path="res://assets/sprites/MTR white.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://phg7rxc12ife" path="res://assets/sprites/Player.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bmxx1vqmmi15f" path="res://assets/sprites/circle_05.png" id="6"]
+
+[sub_resource type="Curve" id="29"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="3"]
+radius = 10.0499
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="30"]
+radius = 30.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("3")
+
+[node name="Trail" parent="." instance=ExtResource("1")]
+width_curve = SubResource("29")
+default_color = Color(1, 0.639216, 0, 1)
+point_length = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("3")
+
+[node name="Hotbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hotbox"]
+shape = SubResource("2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.937255, 0.945098, 0.0784314, 1)
+energy = 0.5
+texture = ExtResource("6")
+texture_scale = 0.15
+
+[node name="AttackZone" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZone"]
+shape = SubResource("30")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackZone"]
+modulate = Color(0.615686, 0.0235294, 0.823529, 0.294118)
+scale = Vector2(0.92, 0.92)
+texture = ExtResource("4")
+
+[connection signal="body_entered" from="Hotbox" to="." method="_on_Hotbox_body_entered"]
+[connection signal="body_entered" from="AttackZone" to="." method="_on_AttackZone_body_entered"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource type="Texture2D" uid="uid://b3p3iuupv7tad" path="res://assets/sprites/Player Effect.png" id="1"]
+[ext_resource type="FontFile" uid="uid://c868sq18mtp51" path="res://assets/fonts/neuropol.otf" id="2"]
+[ext_resource type="Script" uid="uid://dily5nj673obj" path="res://scripts/ui/menu_button.gd" id="3"]
+
+[sub_resource type="FontFile" id=1]
+size = 40
+font_data = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton"]
+offset_right = 1366.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2( 0, 80 )
+focus_mode = 1
+script = ExtResource( 3 )
+arrow_margin_from_center = 191
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 400.0
+offset_right = 400.0
+mouse_filter = 2
+theme_override_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+text = "[center] Text Button [/center]"
+text = " Text Button "
+
+[node name="PlayerEffect1" type="Sprite2D" parent="."]
+position = Vector2( 888.842, 26.6667 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+
+[connection signal="focus_entered" from="." to="." method="_on_TextureButton_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_TextureButton_focus_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_TextureButton_mouse_entered"]

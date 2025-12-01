@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource type="Script" uid="uid://ck27gxc2gvcii" path="res://scripts/explotion.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://d0j6qrrglpt6p" path="res://assets/sprites/MTR white.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://xwjxvs4ijl1a" path="res://assets/sfx/SimplyTargetPoint.wav" id="3"]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Explotion" type="CPUParticles2D"]
+scale = Vector2( 0.3, 0.3 )
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+speed_scale = 2.5
+explosiveness = 1.0
+lifetime_randomness = 0.2
+local_coords = false
+draw_order = 1
+texture = ExtResource( 2 )
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 1.0
+scale_amount = 0.1
+scale_amount_random = 0.1
+scale_amount_curve = SubResource( 1 )
+color = Color( 0.0196078, 0.737255, 0.282353, 1 )
+script = ExtResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "SFX"

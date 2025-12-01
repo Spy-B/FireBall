@@ -1,0 +1,424 @@
+[gd_scene load_steps=39 format=3 uid="uid://cll66uimf1mym"]
+
+[ext_resource type="Texture2D" uid="uid://b130qdsvfcnbg" path="res://assets/sprites/Fire Ball(Name Of Game).png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cyvl1232ljsbt" path="res://assets/sprites/Play.png" id="2"]
+[ext_resource type="Script" uid="uid://cc1rgniposgwy" path="res://scripts/ui/main_menu.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://bs14ay7bl3de1" path="res://assets/sprites/Exit.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://do6rcvtntfew8" path="res://assets/sprites/Exit(click).png" id="6"]
+[ext_resource type="Texture2D" uid="uid://w8hikghawwc2" path="res://assets/sprites/Play(click).png" id="7"]
+[ext_resource type="Texture2D" uid="uid://qx2jaqaktaan" path="res://assets/sprites/About.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://dgk56mne4k0qi" path="res://assets/sprites/About(Click).png" id="11"]
+[ext_resource type="Texture2D" uid="uid://cfwhli8e1akn1" path="res://assets/sprites/spr_stars01.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://cr5cqsgqitv4q" path="res://assets/sprites/spr_stars02.png" id="14"]
+[ext_resource type="Script" uid="uid://c0er66fr7fx76" path="res://scripts/ui/about.gd" id="15"]
+[ext_resource type="LabelSettings" uid="uid://bg47dos30qfea" path="res://resources/labels/credits_menu_role.res" id="15_qch7b"]
+[ext_resource type="Texture2D" uid="uid://eji2qjp5sxm7" path="res://assets/sprites/Back.png" id="16"]
+[ext_resource type="LabelSettings" uid="uid://popqbobseel4" path="res://resources/labels/credits_menu_name.res" id="16_4ovp2"]
+[ext_resource type="Texture2D" uid="uid://dgylkwsy4msk3" path="res://assets/sprites/Back(click).png" id="18"]
+[ext_resource type="FontFile" uid="uid://c868sq18mtp51" path="res://assets/fonts/neuropol.otf" id="19"]
+[ext_resource type="Texture2D" uid="uid://7klhnfqir4b6" path="res://assets/sprites/Yes.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://b4uas3rfnhmco" path="res://assets/sprites/Yes(Click).png" id="22"]
+[ext_resource type="Texture2D" uid="uid://s38wds7e04fq" path="res://assets/sprites/No.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://rryrgd7fx5t5" path="res://assets/sprites/No(Click).png" id="25"]
+[ext_resource type="Texture2D" uid="uid://b8upitxke58xf" path="res://assets/sprites/Option.png" id="27"]
+[ext_resource type="Texture2D" uid="uid://hgvsx4bknt2m" path="res://assets/sprites/Option(Click).png" id="28"]
+[ext_resource type="PackedScene" uid="uid://bddcrt6t4ds4c" path="res://scenes/ui/settings.tscn" id="29"]
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(800, 240)
+
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(1000, 200)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(1100, 240)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(600, 240)
+
+[sub_resource type="Animation" id="6"]
+resource_name = "Exit_B_E"
+length = 4.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.890196, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ais10"]
+_data = {
+&"Exit_B_E": SubResource("6"),
+&"RESET": SubResource("7")
+}
+
+[sub_resource type="RectangleShape2D" id="8"]
+size = Vector2(1400, 300)
+
+[sub_resource type="Animation" id="10"]
+resource_name = "Opening"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="11"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwqfi"]
+_data = {
+&"Opening": SubResource("10"),
+&"RESET": SubResource("11")
+}
+
+[sub_resource type="FontFile" id="12"]
+fallbacks = Array[Font]([ExtResource("19")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="15"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="13"]
+size = Vector2(600, 200)
+
+[sub_resource type="RectangleShape2D" id="14"]
+size = Vector2(400, 200)
+
+[node name="MainMinu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[node name="StarsBG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -728.0
+offset_right = 512.0
+offset_bottom = 752.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12")
+
+[node name="StarsBG2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -728.0
+offset_right = 512.0
+offset_bottom = 752.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14")
+
+[node name="Logo" type="TextureRect" parent="."]
+self_modulate = Color(0.92549, 0.611765, 0.611765, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -640.0
+offset_top = 64.0
+offset_right = 1280.0
+offset_bottom = 1144.0
+grow_horizontal = 0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1")
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="Play" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(72, -372)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2")
+texture_pressed = ExtResource("7")
+shape = SubResource("2")
+action = "start"
+
+[node name="Settings" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(144, -187.99994)
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("27")
+texture_pressed = ExtResource("28")
+shape = SubResource("5")
+action = "options"
+
+[node name="About" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(136, -27.999996)
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("8")
+texture_pressed = ExtResource("11")
+shape = SubResource("4")
+action = "about"
+
+[node name="Exit" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(136, 132)
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("5")
+texture_pressed = ExtResource("6")
+shape = SubResource("3")
+action = "ui_cancel"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Buttons/Exit"]
+libraries = {
+&"": SubResource("AnimationLibrary_ais10")
+}
+
+[node name="AboutGame" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15")
+
+[node name="ColorRect" type="ColorRect" parent="AboutGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Prog&GD" type="Label" parent="AboutGame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -284.0
+offset_right = 384.0
+offset_bottom = -217.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Programming & Graphic Design"
+label_settings = ExtResource("15_qch7b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spy-B" type="Label" parent="AboutGame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -156.0
+offset_right = 384.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Spy-B"
+label_settings = ExtResource("16_4ovp2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="AboutGame/Spy-B"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+uri = "https://github.com/Spy-B"
+
+[node name="OtherAssets" type="Label" parent="AboutGame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = 36.0
+offset_right = 384.0
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stars BG"
+label_settings = ExtResource("15_qch7b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bonsaiheldin" type="Label" parent="AboutGame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = 164.0
+offset_right = 640.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Bonsaiheldin"
+label_settings = ExtResource("16_4ovp2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="AboutGame/Bonsaiheldin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+uri = "https://github.com/Bonsaiheldin"
+
+[node name="Back" type="TouchScreenButton" parent="AboutGame"]
+position = Vector2(31.999998, 31.999998)
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("16")
+texture_pressed = ExtResource("18")
+shape = SubResource("8")
+action = "back"
+
+[node name="Settings" parent="." instance=ExtResource("29")]
+visible = false
+layout_mode = 1
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2"]
+libraries = {
+&"": SubResource("AnimationLibrary_jwqfi")
+}
+
+[node name="AYS" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.0
+offset_top = -102.0
+offset_right = 224.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="AYS"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 62.0
+offset_right = 348.0
+offset_bottom = 99.0
+theme_override_colors/font_color = Color(0, 0.47451, 0.588235, 1)
+theme_override_fonts/font = SubResource("12")
+theme_override_styles/normal = SubResource("15")
+text = "Are You Sure"
+
+[node name="Yes" type="TouchScreenButton" parent="AYS"]
+position = Vector2(-25, 140)
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("21")
+texture_pressed = ExtResource("22")
+shape = SubResource("13")
+action = "ui_accept"
+
+[node name="No" type="TouchScreenButton" parent="AYS"]
+position = Vector2(225, 139)
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("24")
+texture_pressed = ExtResource("25")
+shape = SubResource("14")
+action = "back"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
