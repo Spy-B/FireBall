@@ -12,7 +12,7 @@ colors = PackedColorArray(1, 0.609375, 0, 1, 1, 0, 0, 1)
 [sub_resource type="CircleShape2D" id="1"]
 radius = 13.0
 
-[node name="Enemy2" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Enemy2" type="Area2D" groups=["Enemy"]]
 script = ExtResource("2")
 
 [node name="Trail" parent="." instance=ExtResource("4")]

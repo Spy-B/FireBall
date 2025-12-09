@@ -39,7 +39,7 @@ window/size/window_height_override=540
 window/frame_pacing/android/enable_frame_pacing=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
-window/vsync/vsync_mode=0
+window/handheld/orientation=4
 mouse_cursor/custom_image="res://mouse_cursor.png"
 mouse_cursor/custom_image_hotspot=Vector2(16, 16)
 

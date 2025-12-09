@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 var speed = 4
 var dir = 1
@@ -31,9 +31,5 @@ func _physics_process(_delta: float) -> void:
 	elif Global.E_trail_is_visible == false:
 		$Trail.visible = false
 
-func dead() -> void:
-	queue_free()
-	pass
-
 func _on_Timer_timeout() -> void:
-	dead()
+	queue_free()

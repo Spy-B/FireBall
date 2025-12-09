@@ -1,23 +1,25 @@
 extends Control
 
-func _ready():
-	$ColorRect2/AnimationPlayer.play("Opening")
+@onready var buttons: Control = $Buttons
+@onready var quit_dialog: Control = $QuitDialog
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-func _physics_process(_delta) -> void:
+
+func _ready():
+	animation_player.play("Opening")
+
+func _process(_delta) -> void:
 	if Input.is_action_just_released("start"):
-# warning-ignore:return_value_discarded
 		get_tree().change_scene_to_file("res://scenes/world.tscn")
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	if Input.is_action_just_released("ui_cancel"):
-		$AYS.visible = true
+		quit_dialog.visible = true
 	
-	if Input.is_action_just_released("ui_accept") && $AYS.visible == true:
+	if Input.is_action_just_released("ui_accept") && quit_dialog.visible == true:
 		get_tree().quit()
-	elif Input.is_action_just_released("back") && $AYS.visible == true:
-		$AYS.visible = false
-	
-	$Buttons/Exit/AnimationPlayer.play("Exit_B_E")
+	elif Input.is_action_just_released("back") && quit_dialog.visible == true:
+		quit_dialog.visible = false
 	
 	if Input.is_action_just_released("about"):
 		$AboutGame.visible = true

@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch and !event.is_pressed() and event.get_index() == ongoing_drag:
 		ongoing_drag = -1
 	
-func get_value() -> void:
+func get_value() -> Vector2:
 	if get_Button_Pos().length() > threshold:
 		return get_Button_Pos().normalized()
 	return Vector2(0,0)

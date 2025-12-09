@@ -1,8 +1,7 @@
 extends Node
 
-var trail_is_visible = true
-var E_trail_is_visible = true
-var Attack_off = true
+var trail_is_visible: bool = true
+var E_trail_is_visible: bool = true
 
 var score: int = 0
 var Hi_score: int = 0
@@ -19,10 +18,10 @@ var game_data: Dictionary = {
 	"enemytrail": true
 	}
 
-var camera = null
+var camera: Variant = null
 
-var countDown = 80
-var countDown_h = 80
+var countDown: int = 80
+var countDown_h: int = 80
 
 
 func _ready() -> void:

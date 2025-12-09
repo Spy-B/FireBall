@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 var speed = 4
 var dir = 1

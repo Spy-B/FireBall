@@ -1,35 +1,41 @@
 extends Node2D
 
-func _physics_process(_delta: float) -> void:
+@export var player: CharacterBody2D
+var player_spawn_point: float
+
+@onready var camera: Camera2D = $Camera2D
+@onready var pause: Control = $UI/Pause
+@onready var game_over: Control = $UI/GameOver
+
+func _ready() -> void:
+	player.global_position.x = DisplayServer.screen_get_size().x / 2.0 / camera.zoom.x
+
+func _process(_delta: float) -> void:
 	if Global.score > Global.game_data.Hi_Score:
-		Global.sg_save("Hi_Score", Global.score)
-	
-	if Input.is_action_just_pressed("Window_Min") && get_parent().get_node("Game Over").visible == false:
-		get_window().mode = Window.MODE_MINIMIZED if (true) else Window.MODE_WINDOWED
-		get_parent().get_node("UI/Pause").visible = true
-		get_tree().paused = true
-	
-	elif Input.is_action_just_pressed("Window_Min") && get_parent().get_node("Game Over").visible == true:
-		get_window().mode = Window.MODE_MINIMIZED if (true) else Window.MODE_WINDOWED
+		Global.save_game("Hi_Score", Global.score)
 	
 	if Global.trail_is_visible == true:
 		$Player/Trail.visible = true
 	elif Global.trail_is_visible == false:
 		$Player/Trail.visible = false
-	
-	if Input.is_action_just_released("Restart"):
-		restart_game()
 
-func game_over() -> void:
-	if get_parent().get_node("Game Over").visible == false:
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Window_Min") && game_over.visible == false:
+		get_window().mode = Window.MODE_MINIMIZED if (true) else Window.MODE_WINDOWED
+		get_parent().get_node("UI/Pause").visible = true
+		get_tree().paused = true
+
+	if event.is_action_pressed("Window_Min") && game_over.visible == true:
+		get_window().mode = Window.MODE_MINIMIZED if (true) else Window.MODE_WINDOWED
+
+
+func finish_game() -> void:
+	if game_over.visible == false:
 		var game_over_timer = Timer.new()
-		game_over_timer.connect("timeout", Callable(self, "_on_game_over_timer_timeout"))
+		game_over_timer.connect("timeout", Callable(self, "restart_game"))
 		game_over_timer.wait_time = 0.3
 		add_child(game_over_timer)
 		game_over_timer.start()
-
-func _on_game_over_timer_timeout() -> void:
-	restart_game()
 
 func restart_game() -> void:
 	$"Game Over".visible = true

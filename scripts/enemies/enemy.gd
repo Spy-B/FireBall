@@ -1,9 +1,8 @@
-extends CharacterBody2D
+extends Area2D
 
-var speed: float = 5
+@export var speed: float = 5
 var slow_motion: bool = false
 
-#onready var GO = preload("res://scenes/world.tscn")
 @onready var timeOfDead: Timer = $Timer
 
 

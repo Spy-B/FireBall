@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://br3qtlvifmtnu"]
+[gd_scene load_steps=7 format=3 uid="uid://br3qtlvifmtnu"]
 
 [ext_resource type="Script" uid="uid://bextjf540voer" path="res://scripts/items/time_elixir.gd" id="1_t2lhm"]
 [ext_resource type="PackedScene" path="res://scenes/time_elixer_explotion.tscn" id="2_fkbde"]
@@ -9,13 +9,7 @@
 [sub_resource type="CircleShape2D" id="1"]
 radius = 9.0
 
-[sub_resource type="CircleShape2D" id="2"]
-radius = 11.0
-
-[sub_resource type="CircleShape2D" id="3"]
-radius = 12.0
-
-[node name="AddTime" type="CharacterBody2D" groups=["Add_Time"]]
+[node name="TimeElixir" type="Area2D" groups=["TimeElixir"]]
 script = ExtResource("1_t2lhm")
 death_particle_scene = ExtResource("2_fkbde")
 
@@ -25,21 +19,7 @@ default_color = Color(0, 0.666667, 0.137255, 1)
 point_length = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("1")
-disabled = true
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("2")
-
-[node name="Area2D2" type="Area2D" parent="."]
-visible = false
-position = Vector2(0, -3)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-shape = SubResource("3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.14902, 1, 0, 1)
@@ -47,6 +27,7 @@ scale = Vector2(0.12, 0.12)
 texture = ExtResource("4_v4j5x")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+enabled = false
 color = Color(0.0196078, 0.72549, 0.0823529, 1)
 shadow_enabled = true
 texture = ExtResource("5_ivqf1")
@@ -54,6 +35,4 @@ texture_scale = 0.15
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

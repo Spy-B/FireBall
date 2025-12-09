@@ -1,7 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://x45eqfioeprc"]
+[gd_scene load_steps=5 format=3 uid="uid://c3tu6vvm2smlg"]
 
-[ext_resource type="Script" uid="uid://br85hhaou7avh" path="res://scripts/player/bullet.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://b3p3iuupv7tad" path="res://assets/sprites/Player Effect.png" id="2"]
+
+[sub_resource type="GDScript" id="GDScript_2as5g"]
+script/source = "extends CharacterBody2D
+
+var speed = 300
+var shooter = null
+
+func _physics_process(delta: float) -> void:
+	var collision_info = move_and_collide(velocity.normalized() * delta * speed)
+
+func _on_Area2D_body_entered(body) -> void:
+	if body == shooter:
+		return
+	
+	queue_free()
+"
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 6.0
@@ -10,7 +25,7 @@ radius = 6.0
 radius = 6.0
 
 [node name="Bullet" type="CharacterBody2D"]
-script = ExtResource("1")
+script = SubResource("GDScript_2as5g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("1")

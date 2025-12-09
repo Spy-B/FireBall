@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cll66uimf1mym"]
+[gd_scene load_steps=36 format=3 uid="uid://cll66uimf1mym"]
 
 [ext_resource type="Texture2D" uid="uid://b130qdsvfcnbg" path="res://assets/sprites/Fire Ball(Name Of Game).png" id="1"]
 [ext_resource type="Texture2D" uid="uid://cyvl1232ljsbt" path="res://assets/sprites/Play.png" id="2"]
@@ -36,47 +36,93 @@ size = Vector2(1100, 240)
 [sub_resource type="RectangleShape2D" id="3"]
 size = Vector2(600, 240)
 
-[sub_resource type="Animation" id="6"]
-resource_name = "Exit_B_E"
-length = 4.0
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.6, 3.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.890196, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ais10"]
-_data = {
-&"Exit_B_E": SubResource("6"),
-&"RESET": SubResource("7")
-}
-
 [sub_resource type="RectangleShape2D" id="8"]
 size = Vector2(1400, 300)
+
+[sub_resource type="FontFile" id="12"]
+fallbacks = Array[Font]([ExtResource("19")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/17/0/ascent = 0.0
+cache/0/17/0/descent = 0.0
+cache/0/17/0/underline_position = 0.0
+cache/0/17/0/underline_thickness = 0.0
+cache/0/17/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
+cache/0/19/0/ascent = 0.0
+cache/0/19/0/descent = 0.0
+cache/0/19/0/underline_position = 0.0
+cache/0/19/0/underline_thickness = 0.0
+cache/0/19/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/23/0/ascent = 0.0
+cache/0/23/0/descent = 0.0
+cache/0/23/0/underline_position = 0.0
+cache/0/23/0/underline_thickness = 0.0
+cache/0/23/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+cache/0/26/0/ascent = 0.0
+cache/0/26/0/descent = 0.0
+cache/0/26/0/underline_position = 0.0
+cache/0/26/0/underline_thickness = 0.0
+cache/0/26/0/scale = 1.0
+cache/0/27/0/ascent = 0.0
+cache/0/27/0/descent = 0.0
+cache/0/27/0/underline_position = 0.0
+cache/0/27/0/underline_thickness = 0.0
+cache/0/27/0/scale = 1.0
+cache/0/28/0/ascent = 0.0
+cache/0/28/0/descent = 0.0
+cache/0/28/0/underline_position = 0.0
+cache/0/28/0/underline_thickness = 0.0
+cache/0/28/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="15"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="13"]
+size = Vector2(600, 200)
+
+[sub_resource type="RectangleShape2D" id="14"]
+size = Vector2(400, 200)
 
 [sub_resource type="Animation" id="10"]
 resource_name = "Opening"
@@ -114,31 +160,6 @@ _data = {
 &"RESET": SubResource("11")
 }
 
-[sub_resource type="FontFile" id="12"]
-fallbacks = Array[Font]([ExtResource("19")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-
-[sub_resource type="StyleBoxFlat" id="15"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="RectangleShape2D" id="13"]
-size = Vector2(600, 200)
-
-[sub_resource type="RectangleShape2D" id="14"]
-size = Vector2(400, 200)
-
 [node name="MainMinu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -155,7 +176,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+color = Color(0.07058824, 0.07058824, 0.07058824, 1)
 
 [node name="StarsBG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -236,11 +257,6 @@ texture_pressed = ExtResource("6")
 shape = SubResource("3")
 action = "ui_cancel"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Buttons/Exit"]
-libraries = {
-&"": SubResource("AnimationLibrary_ais10")
-}
-
 [node name="AboutGame" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -258,7 +274,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.07058824, 0.07058824, 0.07058824, 1)
 
 [node name="Prog&GD" type="Label" parent="AboutGame"]
 layout_mode = 1
@@ -286,9 +302,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -384.0
-offset_top = -156.0
+offset_top = -196.0
 offset_right = 384.0
-offset_bottom = -28.0
+offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Spy-B"
@@ -303,6 +319,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+underline = 2
 uri = "https://github.com/Spy-B"
 
 [node name="OtherAssets" type="Label" parent="AboutGame"]
@@ -331,9 +348,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -640.0
-offset_top = 164.0
+offset_top = 124.0
 offset_right = 640.0
-offset_bottom = 292.0
+offset_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Bonsaiheldin"
@@ -348,6 +365,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+underline = 2
 uri = "https://github.com/Bonsaiheldin"
 
 [node name="Back" type="TouchScreenButton" parent="AboutGame"]
@@ -362,22 +380,7 @@ action = "back"
 visible = false
 layout_mode = 1
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2"]
-libraries = {
-&"": SubResource("AnimationLibrary_jwqfi")
-}
-
-[node name="AYS" type="ColorRect" parent="."]
+[node name="QuitDialog" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -391,9 +394,17 @@ offset_right = 224.0
 offset_bottom = 162.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="QuitDialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="AYS"]
+[node name="Label" type="Label" parent="QuitDialog"]
 layout_mode = 0
 offset_left = 87.0
 offset_top = 62.0
@@ -401,24 +412,42 @@ offset_right = 348.0
 offset_bottom = 99.0
 theme_override_colors/font_color = Color(0, 0.47451, 0.588235, 1)
 theme_override_fonts/font = SubResource("12")
+theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("15")
 text = "Are You Sure"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Yes" type="TouchScreenButton" parent="AYS"]
-position = Vector2(-25, 140)
+[node name="Yes" type="TouchScreenButton" parent="QuitDialog"]
+position = Vector2(-30, 130)
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("21")
 texture_pressed = ExtResource("22")
 shape = SubResource("13")
 action = "ui_accept"
 
-[node name="No" type="TouchScreenButton" parent="AYS"]
-position = Vector2(225, 139)
+[node name="No" type="TouchScreenButton" parent="QuitDialog"]
+position = Vector2(226, 130)
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("24")
 texture_pressed = ExtResource("25")
 shape = SubResource("14")
 action = "back"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ColorRect2")
+libraries = {
+&"": SubResource("AnimationLibrary_jwqfi")
+}
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
