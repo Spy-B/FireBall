@@ -1,17 +1,15 @@
 extends Area2D
 
 @export var speed: float = 5
-var slow_motion: bool = false
 
-@onready var timeOfDead: Timer = $Timer
+@onready var time_to_distroy: Timer = $Timer
 
 
 func _ready() -> void:
-	timeOfDead.wait_time = 2
-	timeOfDead.start()
+	time_to_distroy.wait_time = 2.0
 
 func _physics_process(_delta: float) -> void:
-	position += Vector2(0, speed * 1)
+	position += Vector2(0, speed * 1.0)
 	
 	if Global.score >= 10000:
 		speed = 6
@@ -32,3 +30,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_Timer_timeout() -> void:
 	queue_free()
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Border"):
+		time_to_distroy.start()

@@ -14,6 +14,7 @@ config/name="Fire Ball"
 run/main_scene="uid://c22u640h7kpl3"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Spy-B/FireBall"
+config/auto_accept_quit=false
 config/features=PackedStringArray("4.5")
 run/max_fps=60
 boot_splash/show_image=false

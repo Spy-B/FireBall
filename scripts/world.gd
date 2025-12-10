@@ -1,14 +1,26 @@
 extends Node2D
 
 @export var player: CharacterBody2D
-var player_spawn_point: float
 
 @onready var camera: Camera2D = $Camera2D
+@onready var world_borders: Node2D = $WorldBorders
 @onready var pause: Control = $UI/Pause
 @onready var game_over: Control = $UI/GameOver
 
 func _ready() -> void:
-	player.global_position.x = DisplayServer.screen_get_size().x / 2.0 / camera.zoom.x
+	var screen_size: Vector2 = DisplayServer.screen_get_size()
+
+	player.global_position.x = screen_size.x / 2.0 / camera.zoom.x
+
+
+	world_borders.get_node("Border2").global_position.x = screen_size.x / camera.zoom.x + 14 # screen area
+	print(world_borders.get_node("Border2").global_position.x)
+
+	world_borders.get_node("Border1").global_position.x = screen_size.x / 2.0
+	world_borders.get_node("Border1").get_node("CollisionShape2D").shape.size.x = screen_size.x
+
+	world_borders.get_node("Border3").global_position.x = screen_size.x / 2.0
+	world_borders.get_node("Border3").get_node("CollisionShape2D").shape.size.x = screen_size.x
 
 func _process(_delta: float) -> void:
 	if Global.score > Global.game_data.Hi_Score:

@@ -47,7 +47,7 @@ shader_parameter/direction = Vector2(0, -1)
 shader_parameter/speed_scale = 0.006
 
 [sub_resource type="RectangleShape2D" id="4"]
-size = Vector2(534.8468, 20)
+size = Vector2(1000, 20)
 
 [sub_resource type="FontFile" id="21"]
 fallbacks = Array[Font]([ExtResource("21")])
@@ -191,14 +191,14 @@ texture = ExtResource("47")
 stretch_mode = 2
 
 [node name="Player" parent="." node_paths=PackedStringArray("phone_controllers", "joystick_base") instance=ExtResource("1")]
-position = Vector2(384, 256)
+position = Vector2(480, 320)
 death_particle_scene = ExtResource("4_37qwj")
 phone_controllers = NodePath("../UI/PhoneController")
 joystick_base = NodePath("../UI/PhoneController/BottomLeft/JoystickBase")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = ExtResource("57")
 
@@ -272,39 +272,39 @@ enemyPath = ExtResource("7_1vso6")
 wait_time = 0.5
 autostart = true
 
-[node name="EnemySpawner]8" type="Marker2D" parent="Spawners/EnemySpawners"]
+[node name="EnemySpawner8" type="Marker2D" parent="Spawners/EnemySpawners"]
 position = Vector2(544, -88)
 script = ExtResource("3")
 enemyPath = ExtResource("7_1vso6")
 
-[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner]8"]
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner8"]
 wait_time = 0.5
 autostart = true
 
-[node name="EnemySpawner]9" type="Marker2D" parent="Spawners/EnemySpawners"]
+[node name="EnemySpawner9" type="Marker2D" parent="Spawners/EnemySpawners"]
 position = Vector2(608, -88)
 script = ExtResource("3")
 enemyPath = ExtResource("7_1vso6")
 
-[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner]9"]
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner9"]
 wait_time = 0.5
 autostart = true
 
-[node name="EnemySpawner]10" type="Marker2D" parent="Spawners/EnemySpawners"]
+[node name="EnemySpawner10" type="Marker2D" parent="Spawners/EnemySpawners"]
 position = Vector2(672, -88)
 script = ExtResource("3")
 enemyPath = ExtResource("7_1vso6")
 
-[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner]10"]
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner10"]
 wait_time = 0.5
 autostart = true
 
-[node name="EnemySpawner]11" type="Marker2D" parent="Spawners/EnemySpawners"]
+[node name="EnemySpawner11" type="Marker2D" parent="Spawners/EnemySpawners"]
 position = Vector2(736, -88)
 script = ExtResource("3")
 enemyPath = ExtResource("7_1vso6")
 
-[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner]11"]
+[node name="Timer" type="Timer" parent="Spawners/EnemySpawners/EnemySpawner11"]
 wait_time = 0.5
 autostart = true
 
@@ -545,35 +545,33 @@ defenseBallPath = ExtResource("14_hmc15")
 
 [node name="Timer" type="Timer" parent="Spawners/DefenseElixirSpawners/DefenseElixirSpawner6"]
 
-[node name="WorldLimits" type="Node2D" parent="."]
+[node name="WorldBorders" type="Node2D" parent="."]
 
-[node name="Limit" type="StaticBody2D" parent="WorldLimits"]
-position = Vector2(384, 448.00003)
-scale = Vector2(1.40601, 0.933583)
+[node name="Border1" type="StaticBody2D" parent="WorldBorders" groups=["Border"]]
+position = Vector2(480, 560)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/Limit"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorders/Border1"]
 position = Vector2(-3.0517578e-05, 0)
 scale = Vector2(1, 0.9999998)
 shape = SubResource("4")
 
-[node name="Limit2" type="StaticBody2D" parent="WorldLimits"]
-position = Vector2(784, 200)
+[node name="Border2" type="StaticBody2D" parent="WorldBorders"]
+position = Vector2(976, 256)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldLimits/Limit2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBorders/Border2"]
 rotation = 1.5708
 shape = SubResource("4")
 
-[node name="Limit3" type="StaticBody2D" parent="WorldLimits"]
-position = Vector2(384, -23.999998)
-scale = Vector2(1.40576, 0.945249)
+[node name="Border3" type="StaticBody2D" parent="WorldBorders"]
+position = Vector2(480, -16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/Limit3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorders/Border3"]
 shape = SubResource("4")
 
-[node name="Limit4" type="StaticBody2D" parent="WorldLimits"]
-position = Vector2(-16, 208)
+[node name="Border4" type="StaticBody2D" parent="WorldBorders"]
+position = Vector2(-16, 256)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldLimits/Limit4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorders/Border4"]
 rotation = 1.5708
 shape = SubResource("4")
 
@@ -585,9 +583,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -128.0
-offset_top = 32.0
+offset_top = 48.0
 offset_right = 128.0
-offset_bottom = 96.0
+offset_bottom = 112.0
 grow_horizontal = 2
 text = "coins : 999"
 label_settings = ExtResource("26_817gm")
@@ -597,9 +595,9 @@ script = ExtResource("2")
 
 [node name="Score" type="Label" parent="UI"]
 offset_left = 288.0
-offset_top = 32.0
+offset_top = 48.0
 offset_right = 688.0
-offset_bottom = 96.0
+offset_bottom = 112.0
 text = "999"
 label_settings = ExtResource("26_817gm")
 vertical_alignment = 1
@@ -623,9 +621,9 @@ anchors_preset = -1
 anchor_left = 0.86700004
 anchor_right = 0.86700004
 offset_left = -272.64014
-offset_top = 32.0
+offset_top = 48.0
 offset_right = -132.64014
-offset_bottom = 96.0
+offset_bottom = 112.0
 text = "999"
 label_settings = ExtResource("26_817gm")
 horizontal_alignment = 1
@@ -700,7 +698,7 @@ offset_right = 40.0
 grow_vertical = 0
 
 [node name="JoystickBase" parent="UI/PhoneController/BottomLeft" instance=ExtResource("56")]
-position = Vector2(280, -224)
+position = Vector2(312, -224)
 
 [node name="GameOver" parent="UI" instance=ExtResource("39")]
 visible = false
@@ -722,10 +720,10 @@ environment = SubResource("32")
 [connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner5/Timer" to="Spawners/EnemySpawners/EnemySpawner5" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner6/Timer" to="Spawners/EnemySpawners/EnemySpawner6" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner7/Timer" to="Spawners/EnemySpawners/EnemySpawner7" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner]8/Timer" to="Spawners/EnemySpawners/EnemySpawner]8" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner]9/Timer" to="Spawners/EnemySpawners/EnemySpawner]9" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner]10/Timer" to="Spawners/EnemySpawners/EnemySpawner]10" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner]11/Timer" to="Spawners/EnemySpawners/EnemySpawner]11" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner8/Timer" to="Spawners/EnemySpawners/EnemySpawner8" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner9/Timer" to="Spawners/EnemySpawners/EnemySpawner9" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner10/Timer" to="Spawners/EnemySpawners/EnemySpawner10" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Spawners/EnemySpawners/EnemySpawner11/Timer" to="Spawners/EnemySpawners/EnemySpawner11" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner2/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner2" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Spawners/EnemySpawners2/Enemy2Spawner3/Timer" to="Spawners/EnemySpawners2/Enemy2Spawner3" method="_on_Timer_timeout"]

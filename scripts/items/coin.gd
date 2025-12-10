@@ -1,19 +1,17 @@
 extends Area2D
 
-var speed: int = 2
-var dir: int = 1
-
+@export var speed: int = 2
 @export var death_particle_path: PackedScene
 
-@onready var timeDead: Timer = $Timer
+
+@onready var timer: Timer = $Timer
 
 
 func _ready() -> void:
-	timeDead.set_wait_time(5)
-	timeDead.start()
+	timer.set_wait_time(5)
 
-func _physics_process(delta: float) -> void:
-	position += Vector2(delta,speed * dir)
+func _physics_process(_delta: float) -> void:
+	position += Vector2(0, speed * 1)
 
 func distroy() -> void:
 	var death_particle: CPUParticles2D = death_particle_path.instantiate()
@@ -23,6 +21,9 @@ func distroy() -> void:
 	get_tree().current_scene.add_child(death_particle)
 	queue_free()
 
-
 func _on_Timer_timeout() -> void:
 	queue_free()
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Border"):
+		timer.start()
